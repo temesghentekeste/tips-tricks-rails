@@ -1,26 +1,23 @@
 
-<%= form_with model: @person do |f| %>
+<%= form_for @person do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <br>
   <div>
     Addresses:
   </div>
-  <ul>
-    <%= f.fields_for :addresses do |addresses_form| %>
-      <li>
-        <%= addresses_form.label :kind %>
-        <%= addresses_form.text_field :kind %>
- 
-        <%= addresses_form.label :street %>
-        <%= addresses_form.text_field :street %>
-          <div class="field">
-    </div>
-
-      </li>
-    <% end %>
-  </ul>
+  <%#= link_to_add_fields 'Add Address', f, :addresses%>
+  <fieldset>
+        <legend>Addresses:</legend>
+        <%#= f.fields_for :addresses do |addresses_form| %>
+            <%#= render "address_fields", f: addresses_form %>
+        <%# end %>
+        <%= link_to_add_fields "Add Addresses", f, :addresses %>
+    </fieldset>
     <div class="actions">
       <%= f.submit %>
     </div>
 <% end %>
+
+<%#= javascript_pack_tag 'addAddress' %>
+

@@ -5,5 +5,14 @@
   <%= @person.name %>
 </p>
 
+
+<p>Address</p>
+<% @person.addresses.each do |address|%>
+  <p> 
+    Kind: <%= address.kind %>&nbsp;
+    Street:<%= address.street %> 
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

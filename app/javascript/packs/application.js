@@ -15,3 +15,18 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+// app/javascript/packs/application.js
+require("bootstrap")
+import "../stylesheets/application";
+require('./addFields')
+require('./removeFields')
+document.addEventListener("turbolinks:load", function() {
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="popover"]').popover()
+    })
+
+    console.log('Hello from application.js')
+})
+
+
