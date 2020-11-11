@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_163534) do
+ActiveRecord::Schema.define(version: 2020_11_11_193815) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "kind"
+    t.string "street"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "person_id", null: false
+    t.index ["person_id"], name: "index_addresses_on_person_id"
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -19,6 +28,12 @@ ActiveRecord::Schema.define(version: 2020_11_11_163534) do
   end
 
   create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "people", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_163534) do
     t.index ["city_id"], name: "index_users_on_city_id"
   end
 
+  add_foreign_key "addresses", "people"
   add_foreign_key "products", "brands"
   add_foreign_key "users", "cities"
 end
