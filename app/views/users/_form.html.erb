@@ -1,0 +1,33 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+  <div class="field">
+    <% cities_array = City.all.map { |city| [city.name, city.id] } %>
+    <%#= f.select :city_id, city_array, include_blank: true %>
+    <%#= select_tag(:id,options_for_select(cities_array) %>
+    City: <%#= collection_select(:city, :city_id, City.all, :id, :name, prompt: true)%>
+    <%= form.collection_select(:city_id, City.all, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
