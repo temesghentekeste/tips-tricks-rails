@@ -6,12 +6,11 @@
   <div>
     Addresses:
   </div>
-  <%#= link_to_add_fields 'Add Address', f, :addresses%>
   <fieldset>
         <legend>Addresses:</legend>
-        <%#= f.fields_for :addresses do |addresses_form| %>
-            <%#= render "address_fields", f: addresses_form %>
-        <%# end %>
+        <%= f.fields_for :addresses do |addresses_form| %>
+            <%= render "address_fields", f: addresses_form %>
+        <% end %>
         <%= link_to_add_fields "Add Addresses", f, :addresses %>
     </fieldset>
     <div class="actions">
